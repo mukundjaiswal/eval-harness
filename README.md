@@ -133,8 +133,19 @@ noticing.
 
 ## Consumers
 
-- [agentic-rag-assistant-nutrition](https://github.com/mukundjaiswal/agentic-rag-assistant-nutrition)
-  — grounded question answering with LLM-as-judge quality gates
+Three projects, three different shapes of task, one harness:
+
+| Project | Task | What it registers |
+|---|---|---|
+| [financial-complaint-triage](https://github.com/mukundjaiswal/financial-complaint-triage) | Classification and summarization, prompting only | `micro_f1`, `micro_f1_raw`, `normalization_gain`, `unparseable_rate` |
+| [review-summarization-peft](https://github.com/mukundjaiswal/review-summarization-peft) | QLoRA fine-tuning, base vs tuned | `bertscore_f1_rescaled`, `summary_length_ratio`, `empty_output_rate` |
+| [agentic-rag-assistant-nutrition](https://github.com/mukundjaiswal/agentic-rag-assistant-nutrition) | Grounded question answering with LLM-as-judge gates | `mean_groundedness`, `mean_precision`, `mean_repairs`, `exhaustion_rate` |
+
+Not one of those metrics belongs in this package, and none of them could be
+expressed as a field average alone — `micro_f1` is computed over the whole
+prediction set at once. That is why a metric here is any
+`Sequence[Observation] -> float` rather than a narrower contract: the shape of
+the tasks decided the shape of the interface, not the other way round.
 
 ## Development
 
