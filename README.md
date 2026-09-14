@@ -1,3 +1,5 @@
+[![CI](https://github.com/mukundjaiswal/eval-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/mukundjaiswal/eval-harness/actions/workflows/ci.yml)
+
 # eval-harness
 
 A task-agnostic evaluation harness for LLM systems: datasets, a metric registry,
